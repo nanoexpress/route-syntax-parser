@@ -1,0 +1,9 @@
+ls:
+  src:
+    .dir: kebab-case
+    .js: kebab-case
+    .spec.js: kebab-case | pointcase
+
+ignore:
+  - .git
+  - node_modules
