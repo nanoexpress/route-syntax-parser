@@ -64,10 +64,7 @@ jobs:
       - name: Install
         run: yarn --frozen-lockfile
       - name: semantic-release Prepare
-        run: yarn add semantic-release -W
-
-      - name: Build
-        run: yarn build
+        run: yarn add semantic-release
 
       - name: Release
         env:
