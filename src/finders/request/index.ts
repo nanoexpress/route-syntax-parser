@@ -9,7 +9,7 @@ import requestModeQueryFinder from './query';
 export default function caseRequestModeFinder(
   line: string,
   index: number
-): IBlock | undefined {
+): IBlock | null | undefined {
   const requestPropertyCaseFindMatch = line.match(/req.(.*)?(;|\.|\()/);
   let res = null;
   let _;

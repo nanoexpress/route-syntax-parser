@@ -6,7 +6,7 @@ export default function requestModeParamsFinder(
   _key: string,
   line: string,
   index: number
-): IBlock | void {
+): IBlock | null | void {
   let key;
   let link;
   const extracted = variableKeyExtractor(line);
@@ -39,7 +39,7 @@ export default function requestModeParamsFinder(
     }
     if (_key.includes('getParameter(')) {
       // uWebSockets.js has native `getParameter` support
-      return undefined;
+      return null;
     }
     if (_key === 'params' && extracted[1].charAt(0) === '{') {
       key = extracted[1].substr(1);

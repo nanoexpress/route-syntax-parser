@@ -3,8 +3,9 @@ import { IBlock } from './types/interfaces';
 import babelCompilerManipulationNormalize from './utils/babel-normalise';
 import eachStringLine from './utils/each-str-line';
 import functionToString from './utils/fn-to-string';
+import stringSplit from './utils/string-split';
 
-export = function analyze(func: (...args: never[]) => never): IBlock[] {
+function analyze(func: (...args: never[]) => never): IBlock[] {
   const blocks: IBlock[] = [];
   eachStringLine(
     babelCompilerManipulationNormalize(functionToString(func)),
@@ -18,4 +19,11 @@ export = function analyze(func: (...args: never[]) => never): IBlock[] {
   );
 
   return blocks;
+}
+export {
+  analyze as default,
+  eachStringLine,
+  babelCompilerManipulationNormalize,
+  functionToString,
+  stringSplit
 };

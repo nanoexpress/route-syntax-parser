@@ -150,7 +150,9 @@ functions-build
 ## Bundle files
 ## Build files for
 ## Gatsby, CRA, etc
+esm/
 cjs/*
+!esm/package.json
 !cjs/package.json
 public/bundle*
 public/dist*
@@ -175,3 +177,5 @@ assets/css/bundle*
 
 # TypeScript v1 declaration files
 typings/
+
+rollup.config.js

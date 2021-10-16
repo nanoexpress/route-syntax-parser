@@ -1,7 +1,10 @@
-const analyze = require('../cjs/analyze');
-const babelCompilerManipulationNormalize = require('../cjs/utils/babel-normalise');
-const functionToString = require('../cjs/utils/fn-to-string');
-const stringSplit = require('../cjs/utils/string-split');
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import analyze, {
+  babelCompilerManipulationNormalize,
+  functionToString,
+  stringSplit
+} from '../esm/analyze';
 
 describe('utils', () => {
   it('utils/fn-to-string', () => {

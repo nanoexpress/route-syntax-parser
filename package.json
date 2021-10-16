@@ -2,17 +2,19 @@
   "name": "@nanoexpress/route-syntax-parser",
   "description": "Syntax parser for each router to power performance of nanoexpress",
   "version": "1.0.0",
-  "main": "cjs/analyze.js",
+  "type": "module",
+  "main": "esm/analyze.js",
   "license": "GPL-3.0",
   "scripts": {
     "lint": "smartlint",
     "prepare": "husky install",
-    "build": "tsc",
-    "test": "tsc && node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "build": "rollup -c",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
+    "@rollup/plugin-node-resolve": "^13.0.5",
     "commitlint-config-airlight": "^2.0.0",
     "coveralls": "^3.1.1",
     "eslint": "^8.0.1",
@@ -23,6 +25,8 @@
     "lint-staged-config-airlight": "^2.0.1",
     "prettier": "^2.4.1",
     "prettier-config-airlight": "^1.0.1",
+    "rollup": "^2.58.0",
+    "rollup-plugin-typescript2": "^0.30.0",
     "smartlint": "^5.0.0",
     "typescript": "^4.4.4"
   },

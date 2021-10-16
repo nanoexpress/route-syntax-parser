@@ -6,7 +6,7 @@ export default function requestModeHeadersFinder(
   _key: string,
   line: string,
   index: number
-): IBlock | void {
+): IBlock | null | void {
   let key;
   let link;
   const extracted = variableKeyExtractor(line);
@@ -39,7 +39,7 @@ export default function requestModeHeadersFinder(
     }
     if (_key.includes('getHeader(')) {
       // uWebSockets.js has native `getHeader` support
-      return undefined;
+      return null;
     }
     if (_key === 'headers' && extracted[1].charAt(0) === '{') {
       key = extracted[1].substr(1);

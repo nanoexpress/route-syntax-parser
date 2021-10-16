@@ -12,5 +12,6 @@ coverage
 tests/coverage
 
 cjs/
+esm/
 
 CODE_OF_CONDUCT.md

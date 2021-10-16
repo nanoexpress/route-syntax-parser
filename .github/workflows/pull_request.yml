@@ -37,6 +37,9 @@ jobs:
       - name: Lint code
         run: yarn lint
 
+      - name: Build code
+        run: yarn build
+
       - name: Test code
         run: yarn test
   auto-merge:

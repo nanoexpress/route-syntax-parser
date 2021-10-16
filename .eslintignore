@@ -13,5 +13,7 @@ tests/coverage
 tests/
 
 cjs/
+esm/
 
 CODE_OF_CONDUCT.md
+rollup.config.js

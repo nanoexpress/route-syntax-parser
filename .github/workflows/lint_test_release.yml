@@ -40,12 +40,21 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2-beta
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
       - name: Install
         run: yarn --frozen-lockfile
+
+      - name: Build code
+        run: yarn build
 
       - name: Test code
         run: yarn test
@@ -57,14 +66,23 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2-beta
         with:
           node-version: 16.x
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install
         run: yarn --frozen-lockfile
       - name: semantic-release Prepare
         run: yarn add semantic-release
+
+      - name: Build code
+        run: yarn build
 
       - name: Release
         env:
