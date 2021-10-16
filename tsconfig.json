@@ -2,7 +2,7 @@
   "include": ["src"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2015",
     "module": "CommonJS",
     // "lib": [],
     "allowJs": false,
@@ -43,7 +43,7 @@
     // "typeRoots": [],
     // "types": [],
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     // "preserveSymlinks": true,
 
     // "sourceRoot": "./src" ,

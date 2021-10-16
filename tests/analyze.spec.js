@@ -1,9 +1,7 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import analyze from '../cjs/analyze';
-import babelCompilerManipulationNormalize from '../cjs/utils/babel-normalise';
-import functionToString from '../cjs/utils/fn-to-string';
-import stringSplit from '../cjs/utils/string-split';
+const analyze = require('../cjs/analyze');
+const babelCompilerManipulationNormalize = require('../cjs/utils/babel-normalise');
+const functionToString = require('../cjs/utils/fn-to-string');
+const stringSplit = require('../cjs/utils/string-split');
 
 describe('utils', () => {
   it('utils/fn-to-string', () => {

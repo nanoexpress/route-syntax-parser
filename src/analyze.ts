@@ -4,7 +4,7 @@ import babelCompilerManipulationNormalize from './utils/babel-normalise';
 import eachStringLine from './utils/each-str-line';
 import functionToString from './utils/fn-to-string';
 
-export default function analyze(func: (...args: never[]) => never): IBlock[] {
+export = function analyze(func: (...args: never[]) => never): IBlock[] {
   const blocks: IBlock[] = [];
   eachStringLine(
     babelCompilerManipulationNormalize(functionToString(func)),
@@ -18,4 +18,4 @@ export default function analyze(func: (...args: never[]) => never): IBlock[] {
   );
 
   return blocks;
-}
+};
