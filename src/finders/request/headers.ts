@@ -1,6 +1,12 @@
-import variableKeyExtractor from '../../extractors/variable-key.js';
+import variableKeyExtractor from '../../extractors/variable-key';
+import { IBlock } from '../../types/interfaces';
 
-export default function requestModeHeadersFinder(_, _key, line, index) {
+export default function requestModeHeadersFinder(
+  _: string,
+  _key: string,
+  line: string,
+  index: number
+): IBlock | void {
   let key;
   let link;
   const extracted = variableKeyExtractor(line);
@@ -33,7 +39,7 @@ export default function requestModeHeadersFinder(_, _key, line, index) {
     }
     if (_key.includes('getHeader(')) {
       // uWebSockets.js has native `getHeader` support
-      return null;
+      return undefined;
     }
     if (_key === 'headers' && extracted[1].charAt(0) === '{') {
       key = extracted[1].substr(1);

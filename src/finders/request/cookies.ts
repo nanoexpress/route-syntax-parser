@@ -1,6 +1,12 @@
-import variableKeyExtractor from '../../extractors/variable-key.js';
+import variableKeyExtractor from '../../extractors/variable-key';
+import { IBlock } from '../../types/interfaces';
 
-export default function requestModeBodyFinder(_, _key, line, index) {
+export default function requestModeCookiesFinder(
+  _: string,
+  _key: string,
+  line: string,
+  index: number
+): IBlock | void {
   let key;
   let link;
   const extracted = variableKeyExtractor(line);
@@ -9,9 +15,9 @@ export default function requestModeBodyFinder(_, _key, line, index) {
     return undefined;
   }
 
-  if (_key.toLowerCase().includes('body')) {
-    if (_key.includes('body.')) {
-      key = _key.substr(5);
+  if (_key.toLowerCase().includes('cookie')) {
+    if (_key.includes('cookies.')) {
+      key = _key.substr(8);
 
       return {
         link: extracted[1],
@@ -20,8 +26,8 @@ export default function requestModeBodyFinder(_, _key, line, index) {
         key
       };
     }
-    if (_key.includes('getBodyField(')) {
-      key = _key.substr(14);
+    if (_key.includes('cookie(')) {
+      key = _key.substr(8);
       key = key.substr(0, key.length - 2);
 
       return {
@@ -31,7 +37,7 @@ export default function requestModeBodyFinder(_, _key, line, index) {
         key
       };
     }
-    if (_key === 'body' && extracted[1].charAt(0) === '{') {
+    if (_key === 'cookies' && extracted[1].charAt(0) === '{') {
       key = extracted[1].substr(1);
       key = key.substr(0, key.length - 1).trim();
       link = key;
@@ -47,7 +53,7 @@ export default function requestModeBodyFinder(_, _key, line, index) {
         key
       };
     }
-    if (_key === 'body') {
+    if (_key === 'cookies') {
       return {
         link: extracted[1],
         linked: false,

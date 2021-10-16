@@ -1,6 +1,12 @@
-import variableKeyExtractor from '../../extractors/variable-key.js';
+import variableKeyExtractor from '../../extractors/variable-key';
+import { IBlock } from '../../types/interfaces';
 
-export default function requestModeQueryFinder(_, _key, line, index) {
+export default function requestModeParamsFinder(
+  _: string,
+  _key: string,
+  line: string,
+  index: number
+): IBlock | void {
   let key;
   let link;
   const extracted = variableKeyExtractor(line);
@@ -9,9 +15,9 @@ export default function requestModeQueryFinder(_, _key, line, index) {
     return undefined;
   }
 
-  if (_key.toLowerCase().includes('query')) {
-    if (_key.includes('query.')) {
-      key = _key.substr(6);
+  if (_key.toLowerCase().includes('param')) {
+    if (_key.includes('params.')) {
+      key = _key.substr(7);
 
       return {
         link: extracted[1],
@@ -20,8 +26,8 @@ export default function requestModeQueryFinder(_, _key, line, index) {
         key
       };
     }
-    if (_key.includes('getQuery(')) {
-      key = _key.substr(10);
+    if (_key.includes('param(')) {
+      key = _key.substr(7);
       key = key.substr(0, key.length - 2);
 
       return {
@@ -31,7 +37,11 @@ export default function requestModeQueryFinder(_, _key, line, index) {
         key
       };
     }
-    if (_key === 'query' && extracted[1].charAt(0) === '{') {
+    if (_key.includes('getParameter(')) {
+      // uWebSockets.js has native `getParameter` support
+      return undefined;
+    }
+    if (_key === 'params' && extracted[1].charAt(0) === '{') {
       key = extracted[1].substr(1);
       key = key.substr(0, key.length - 1).trim();
       link = key;
@@ -47,7 +57,7 @@ export default function requestModeQueryFinder(_, _key, line, index) {
         key
       };
     }
-    if (_key === 'query') {
+    if (_key === 'params') {
       return {
         link: extracted[1],
         linked: false,

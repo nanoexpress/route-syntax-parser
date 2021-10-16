@@ -1,6 +1,12 @@
-import variableKeyExtractor from '../../extractors/variable-key.js';
+import variableKeyExtractor from '../../extractors/variable-key';
+import { IBlock } from '../../types/interfaces';
 
-export default function requestMethodFinder(_, _key, line, index) {
+export default function requestMethodFinder(
+  _: string,
+  _key: string,
+  line: string,
+  index: number
+): IBlock | void {
   let key;
   let link;
   const extracted = variableKeyExtractor(line);
@@ -19,7 +25,7 @@ export default function requestMethodFinder(_, _key, line, index) {
   }
   if (_key.includes('getMethod(') || _key.includes('getUrl(')) {
     // uWebSockets.js has native `getMethod` and `getUrl` support
-    return null;
+    return undefined;
   }
   if (_key === 'req;' && extracted[1].charAt(0) === '{') {
     key = extracted[1].substr(1);

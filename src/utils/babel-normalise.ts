@@ -1,4 +1,6 @@
-export default function babelCompilerManipulationNormalize(content) {
+export default function babelCompilerManipulationNormalize(
+  content: string
+): string {
   if (content.includes('const {\n') || content.includes('let {\n')) {
     return content.split('\n').reduce((all, currLine) => {
       currLine = currLine.trim();

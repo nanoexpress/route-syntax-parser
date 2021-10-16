@@ -1,11 +1,15 @@
-import requestModeBodyFinder from './body.js';
-import requestModeCookiesFinder from './cookies.js';
-import requestModeHeadersFinder from './headers.js';
-import requestModeParamsFinder from './params.js';
-import requestMethodFinder from './property.js';
-import requestModeQueryFinder from './query.js';
+import { IBlock } from '../../types/interfaces';
+import requestModeBodyFinder from './body';
+import requestModeCookiesFinder from './cookies';
+import requestModeHeadersFinder from './headers';
+import requestModeParamsFinder from './params';
+import requestMethodFinder from './property';
+import requestModeQueryFinder from './query';
 
-export default function caseRequestModeFinder(line, index) {
+export default function caseRequestModeFinder(
+  line: string,
+  index: number
+): IBlock | undefined {
   const requestPropertyCaseFindMatch = line.match(/req.(.*)?(;|\.|\()/);
   let res = null;
   let _;
@@ -69,12 +73,16 @@ export default function caseRequestModeFinder(line, index) {
     }
   } else {
     // Method matching
-    res = requestMethodFinder(_, line.substr(line.indexOf('req')), line, index);
+    res = requestMethodFinder(
+      _ as unknown as string,
+      line.substr(line.indexOf('req')),
+      line,
+      index
+    );
     if (res) {
       res.mode = 'property';
       return res;
     }
   }
-
-  return null;
+  return undefined;
 }

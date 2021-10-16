@@ -1,4 +1,4 @@
-export default function variableKeyExtractor(line) {
+export default function variableKeyExtractor(line: string): string[] | null {
   const matcRegEx = /(const|let|var)(.*)=(.*)/;
   const matches = line.match(matcRegEx);
 
