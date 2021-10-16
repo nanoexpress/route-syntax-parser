@@ -23,7 +23,7 @@
     "lint-staged-config-airlight": "^2.0.1",
     "prettier": "^2.4.1",
     "prettier-config-airlight": "^1.0.1",
-    "smartlint": "^2.1.3",
+    "smartlint": "^3.0.0",
     "typescript": "^4.4.4"
   },
   "resolutions": {
