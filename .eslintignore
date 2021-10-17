@@ -11,6 +11,7 @@ node_modules
 coverage
 tests/coverage
 tests/
+typings
 
 cjs/
 esm/
