@@ -1,4 +1,5 @@
 import { IBlock } from '../../../types/interfaces';
+import scopeExtractor from '../../extractors/scopes';
 import requestModeBodyFinder from './body';
 import requestModeCookiesFinder from './cookies';
 import requestModeHeadersFinder from './headers';
@@ -10,13 +11,29 @@ export default function caseRequestModeFinder(
   line: string,
   index: number
 ): IBlock | null | undefined {
-  const requestPropertyCaseFindMatch = line.match(/req.(.*)?(;|\.|\()/);
+  const requestPropertyCaseFindMatch = line.match(
+    /(request|req).(.*)?(;|\.|\()/
+  );
+
   let res = null;
+  let input;
   let _;
   let _key;
+  let _skey;
 
   if (requestPropertyCaseFindMatch) {
-    [_, _key] = requestPropertyCaseFindMatch;
+    [input] = requestPropertyCaseFindMatch;
+    [_, _key, _skey] = scopeExtractor(input);
+
+    if (_skey) {
+      return {
+        link: _skey,
+        linked: false,
+        line_index: index,
+        key: _skey,
+        mode: _key as any
+      };
+    }
 
     // Headers matching
     res = requestModeHeadersFinder(_, _key, line, index);
@@ -38,6 +55,7 @@ export default function caseRequestModeFinder(
 
     // Params matching
     res = requestModeParamsFinder(_, _key, line, index);
+
     if (res !== undefined) {
       if (res !== null) {
         res.mode = 'params';
@@ -73,9 +91,11 @@ export default function caseRequestModeFinder(
     }
   } else {
     // Method matching
+    const reqIndex = line.indexOf('req');
+    const requestIndex = line.indexOf('request');
     res = requestMethodFinder(
       _ as unknown as string,
-      line.substr(line.indexOf('req')),
+      line.substr(requestIndex !== -1 ? requestIndex : reqIndex),
       line,
       index
     );

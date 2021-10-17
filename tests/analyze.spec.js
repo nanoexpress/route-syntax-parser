@@ -260,6 +260,19 @@ describe('request property parse', () => {
         mode: 'params'
       }
     ]);
+    expect(
+      analyze((request, response) => {
+        response.end(request.params.id);
+      })
+    ).toEqual([
+      {
+        key: 'id',
+        line_index: 1,
+        link: 'id',
+        linked: false,
+        mode: 'params'
+      }
+    ]);
   });
   it('req.query', () => {
     expect(

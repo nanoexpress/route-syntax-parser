@@ -15,7 +15,10 @@ export default function requestMethodFinder(
     return undefined;
   }
 
-  if (extracted[2].includes('req.') && !extracted[2].includes('()')) {
+  if (
+    (extracted[2].includes('req.') || extracted[2].includes('request.')) &&
+    !extracted[2].includes('()')
+  ) {
     return {
       link: extracted[1],
       linked: false,
@@ -27,7 +30,10 @@ export default function requestMethodFinder(
     // uWebSockets.js has native `getMethod` and `getUrl` support
     return undefined;
   }
-  if (_key === 'req;' && extracted[1].charAt(0) === '{') {
+  if (
+    (_key === 'req;' || _key === 'request;') &&
+    extracted[1].charAt(0) === '{'
+  ) {
     key = extracted[1].substr(1);
     key = key.substr(0, key.length - 1).trim();
     link = key;
@@ -43,7 +49,7 @@ export default function requestMethodFinder(
       key
     };
   }
-  if (_key.endsWith('req')) {
+  if (_key.endsWith('req') || _key.endsWith('request')) {
     return {
       link: extracted[1],
       linked: false,
