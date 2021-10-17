@@ -1,4 +1,6 @@
-export default (line: string): string[] => {
+import { BlockMode } from '../../types/interfaces';
+
+export default (line: string): ['request' | 'req', BlockMode, string?] => {
   const matches = [];
   const cases = {
     SCOPE: 0,
@@ -105,5 +107,5 @@ export default (line: string): string[] => {
     matches.push(rebuild);
   }
 
-  return matches;
+  return matches as ['request' | 'req', BlockMode, string?];
 };

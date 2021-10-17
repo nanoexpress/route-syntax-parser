@@ -23,7 +23,8 @@ export default function requestModeBodyFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'body'
       };
     }
     if (_key.includes('getBodyField(')) {
@@ -34,7 +35,8 @@ export default function requestModeBodyFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'body'
       };
     }
     if (_key === 'body' && extracted[1].charAt(0) === '{') {
@@ -50,7 +52,8 @@ export default function requestModeBodyFinder(
         link,
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'body'
       };
     }
     if (_key === 'body') {
@@ -58,7 +61,8 @@ export default function requestModeBodyFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key: '*'
+        key: '*',
+        mode: 'body'
       };
     }
   }

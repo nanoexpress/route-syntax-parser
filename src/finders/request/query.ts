@@ -23,7 +23,8 @@ export default function requestModeQueryFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'query'
       };
     }
     if (_key.includes('getQuery(')) {
@@ -34,7 +35,8 @@ export default function requestModeQueryFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'query'
       };
     }
     if (_key === 'query' && extracted[1].charAt(0) === '{') {
@@ -50,7 +52,8 @@ export default function requestModeQueryFinder(
         link,
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'query'
       };
     }
     if (_key === 'query') {
@@ -58,7 +61,8 @@ export default function requestModeQueryFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key: '*'
+        key: '*',
+        mode: 'query'
       };
     }
   }

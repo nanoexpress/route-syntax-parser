@@ -31,25 +31,19 @@ export default function caseRequestModeFinder(
         linked: false,
         line_index: index,
         key: _skey,
-        mode: _key as any
+        mode: _key
       };
     }
 
     // Headers matching
     res = requestModeHeadersFinder(_, _key, line, index);
     if (res !== undefined) {
-      if (res !== null) {
-        res.mode = 'headers';
-      }
       return res;
     }
 
     // Cookies matching
     res = requestModeCookiesFinder(_, _key, line, index);
     if (res !== undefined) {
-      if (res !== null) {
-        res.mode = 'cookies';
-      }
       return res;
     }
 
@@ -57,36 +51,24 @@ export default function caseRequestModeFinder(
     res = requestModeParamsFinder(_, _key, line, index);
 
     if (res !== undefined) {
-      if (res !== null) {
-        res.mode = 'params';
-      }
       return res;
     }
 
     // Params matching
     res = requestModeQueryFinder(_, _key, line, index);
     if (res !== undefined) {
-      if (res !== null) {
-        res.mode = 'query';
-      }
       return res;
     }
 
     // Body matching
     res = requestModeBodyFinder(_, _key, line, index);
     if (res !== undefined) {
-      if (res !== null) {
-        res.mode = 'body';
-      }
       return res;
     }
 
     // Method matching
     res = requestMethodFinder(_, _key, line, index);
     if (res !== undefined) {
-      if (res !== null) {
-        res.mode = 'property';
-      }
       return res;
     }
   } else {
@@ -100,7 +82,6 @@ export default function caseRequestModeFinder(
       index
     );
     if (res) {
-      res.mode = 'property';
       return res;
     }
   }

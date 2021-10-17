@@ -23,7 +23,8 @@ export default function requestModeCookiesFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'cookies'
       };
     }
     if (_key.includes('cookie(')) {
@@ -34,7 +35,8 @@ export default function requestModeCookiesFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'cookies'
       };
     }
     if (_key === 'cookies' && extracted[1].charAt(0) === '{') {
@@ -50,7 +52,8 @@ export default function requestModeCookiesFinder(
         link,
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'cookies'
       };
     }
     if (_key === 'cookies') {
@@ -58,7 +61,8 @@ export default function requestModeCookiesFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key: '*'
+        key: '*',
+        mode: 'cookies'
       };
     }
   }

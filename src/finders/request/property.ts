@@ -23,7 +23,8 @@ export default function requestMethodFinder(
       link: extracted[1],
       linked: false,
       line_index: index,
-      key: _key
+      key: _key,
+      mode: 'property'
     };
   }
   if (_key.includes('getMethod(') || _key.includes('getUrl(')) {
@@ -46,7 +47,8 @@ export default function requestMethodFinder(
       link,
       linked: false,
       line_index: index,
-      key
+      key,
+      mode: 'property'
     };
   }
   if (_key.endsWith('req') || _key.endsWith('request')) {
@@ -54,7 +56,8 @@ export default function requestMethodFinder(
       link: extracted[1],
       linked: false,
       line_index: index,
-      key: '*'
+      key: '*',
+      mode: 'property'
     };
   }
 

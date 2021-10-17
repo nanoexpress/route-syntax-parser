@@ -23,7 +23,8 @@ export default function requestModeParamsFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'params'
       };
     }
     if (_key.includes('param(')) {
@@ -34,7 +35,8 @@ export default function requestModeParamsFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'params'
       };
     }
     if (_key.includes('getParameter(')) {
@@ -54,7 +56,8 @@ export default function requestModeParamsFinder(
         link,
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'params'
       };
     }
     if (_key === 'params') {
@@ -62,7 +65,8 @@ export default function requestModeParamsFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key: '*'
+        key: '*',
+        mode: 'params'
       };
     }
   }

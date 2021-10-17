@@ -23,7 +23,8 @@ export default function requestModeHeadersFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'headers'
       };
     }
     if (_key.includes('header(')) {
@@ -34,7 +35,8 @@ export default function requestModeHeadersFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'headers'
       };
     }
     if (_key.includes('getHeader(')) {
@@ -54,7 +56,8 @@ export default function requestModeHeadersFinder(
         link,
         linked: false,
         line_index: index,
-        key
+        key,
+        mode: 'headers'
       };
     }
     if (_key === 'headers') {
@@ -62,7 +65,8 @@ export default function requestModeHeadersFinder(
         link: extracted[1],
         linked: false,
         line_index: index,
-        key: '*'
+        key: '*',
+        mode: 'headers'
       };
     }
   }
