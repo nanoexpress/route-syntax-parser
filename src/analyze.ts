@@ -1,5 +1,5 @@
+import { IBlock } from '../types/interfaces';
 import caseRequestModeFinder from './finders/request';
-import { IBlock } from './types/interfaces';
 import babelCompilerManipulationNormalize from './utils/babel-normalise';
 import eachStringLine from './utils/each-str-line';
 import functionToString from './utils/fn-to-string';

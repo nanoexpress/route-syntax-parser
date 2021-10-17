@@ -12,6 +12,7 @@ coverage
 tests/coverage
 tests/
 typings
+types
 
 cjs/
 esm/

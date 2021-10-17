@@ -14,5 +14,6 @@ tests/coverage
 cjs/
 esm/
 typings/
+types/
 
 CODE_OF_CONDUCT.md

@@ -1,4 +1,4 @@
-import { IBlock } from '../../types/interfaces';
+import { IBlock } from '../../../types/interfaces';
 import requestModeBodyFinder from './body';
 import requestModeCookiesFinder from './cookies';
 import requestModeHeadersFinder from './headers';

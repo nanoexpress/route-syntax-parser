@@ -1,5 +1,5 @@
+import { IBlock } from '../../../types/interfaces';
 import variableKeyExtractor from '../../extractors/variable-key';
-import { IBlock } from '../../types/interfaces';
 
 export default function requestModeHeadersFinder(
   _: string,
