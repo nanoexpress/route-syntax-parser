@@ -3,6 +3,7 @@
   "description": "Syntax parser for each router to power performance of nanoexpress",
   "version": "1.0.0",
   "type": "module",
+  "typings": "typings/analyze.d.ts",
   "main": "esm/analyze.js",
   "license": "GPL-3.0",
   "scripts": {
