@@ -1,5 +1,3 @@
-export default function functionToString(
-  func: (...args: never[]) => never
-): string {
-  return func.toString().trim();
+export default function functionToString<T>(func: T): string {
+  return (func as any).toString().trim();
 }
