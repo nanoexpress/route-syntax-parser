@@ -71,6 +71,16 @@ export default function caseRequestModeFinder(
     if (res !== undefined) {
       return res;
     }
+
+    if (_key && res !== null) {
+      return {
+        link: _key,
+        linked: false,
+        line_index: index,
+        key: _key,
+        mode: 'property'
+      };
+    }
   } else {
     // Method matching
     const reqIndex = line.indexOf('req');

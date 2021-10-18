@@ -6,7 +6,7 @@ export default function requestMethodFinder(
   _key: string,
   line: string,
   index: number
-): IBlock | void {
+): IBlock | null | void {
   let key;
   let link;
   const extracted = variableKeyExtractor(line);
@@ -29,7 +29,7 @@ export default function requestMethodFinder(
   }
   if (_key.includes('getMethod(') || _key.includes('getUrl(')) {
     // uWebSockets.js has native `getMethod` and `getUrl` support
-    return undefined;
+    return null;
   }
   if (
     (_key === 'req;' || _key === 'request;') &&

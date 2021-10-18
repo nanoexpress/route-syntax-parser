@@ -115,6 +115,21 @@ describe('property parse', () => {
       }
     ]);
   });
+  it('req.ip', () => {
+    expect(
+      analyze((request, response) => {
+        response.end(request.ip);
+      })
+    ).toEqual([
+      {
+        key: 'ip',
+        line_index: 1,
+        link: 'ip',
+        linked: false,
+        mode: 'property'
+      }
+    ]);
+  });
 });
 
 describe('request property parse', () => {
