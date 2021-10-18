@@ -1,4 +1,4 @@
-import { BlockMode } from '../types/interfaces';
+import { BlockMode } from '../../types/interfaces';
 
 export default (line: string): ['request' | 'req', BlockMode, string?] => {
   const matches = [];

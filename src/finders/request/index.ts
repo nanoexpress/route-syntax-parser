@@ -1,5 +1,5 @@
 import scopeExtractor from '../../extractors/scopes';
-import { IBlock } from '../../types/interfaces';
+import { IBlock } from '../../../types/interfaces';
 import isScopeIn from '../../utils/is-scope-in';
 import requestModeBodyFinder from './body';
 import requestModeCookiesFinder from './cookies';
