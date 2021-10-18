@@ -35,7 +35,7 @@ export default function caseRequestModeFinder(
           line_index: index,
           key: _skey,
           mode: _key
-        };
+        } as IBlock;
       }
       return undefined;
     }
@@ -49,7 +49,7 @@ export default function caseRequestModeFinder(
         line_index: index,
         key: _key,
         mode: 'property'
-      };
+      } as IBlock;
     }
 
     // Headers matching
@@ -96,7 +96,7 @@ export default function caseRequestModeFinder(
         line_index: index,
         key: _key,
         mode: 'property'
-      };
+      } as IBlock;
     }
   } else {
     // Method matching
