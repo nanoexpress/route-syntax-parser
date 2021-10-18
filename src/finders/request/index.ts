@@ -17,7 +17,7 @@ export default function caseRequestModeFinder(
     /(request|req).(.*)?(;|\.|\()/
   );
 
-  let res = null;
+  let res;
   let input;
   let _;
   let _key;
