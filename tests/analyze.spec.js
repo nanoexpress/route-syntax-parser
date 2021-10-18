@@ -129,6 +129,15 @@ describe('property parse', () => {
         mode: 'property'
       }
     ]);
+    expect(analyze((request, response) => ({ ip: request.ip }))).toEqual([
+      {
+        key: 'ip',
+        line_index: 1,
+        link: 'ip',
+        linked: false,
+        mode: 'property'
+      }
+    ]);
   });
 });
 

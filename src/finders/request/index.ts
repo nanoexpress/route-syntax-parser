@@ -1,5 +1,6 @@
-import { IBlock } from '../../../types/interfaces';
 import scopeExtractor from '../../extractors/scopes';
+import { IBlock } from '../../types/interfaces';
+import isScopeIn from '../../utils/is-scope-in';
 import requestModeBodyFinder from './body';
 import requestModeCookiesFinder from './cookies';
 import requestModeHeadersFinder from './headers';
@@ -8,9 +9,10 @@ import requestMethodFinder from './property';
 import requestModeQueryFinder from './query';
 
 export default function caseRequestModeFinder(
-  line: string,
+  raw_line: string,
   index: number
 ): IBlock | null | undefined {
+  const line = raw_line.trim();
   const requestPropertyCaseFindMatch = line.match(
     /(request|req).(.*)?(;|\.|\()/
   );
@@ -26,12 +28,27 @@ export default function caseRequestModeFinder(
     [_, _key, _skey] = scopeExtractor(input);
 
     if (_skey) {
+      if (isScopeIn(_key)) {
+        return {
+          link: _skey,
+          linked: false,
+          line_index: index,
+          key: _skey,
+          mode: _key
+        };
+      }
+      return undefined;
+    }
+
+    if (_key === undefined) {
+      [_, _key] = scopeExtractor(line);
+
       return {
-        link: _skey,
+        link: _key,
         linked: false,
         line_index: index,
-        key: _skey,
-        mode: _key
+        key: _key,
+        mode: 'property'
       };
     }
 

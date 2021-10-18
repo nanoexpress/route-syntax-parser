@@ -1,8 +1,9 @@
-import { BlockMode } from '../../types/interfaces';
+import { BlockMode } from '../types/interfaces';
 
 export default (line: string): ['request' | 'req', BlockMode, string?] => {
   const matches = [];
   const cases = {
+    SPACES: 0,
     SCOPE: 0,
     CURVE_SCOPE: 0,
     QUOTE: 0,
@@ -11,6 +12,9 @@ export default (line: string): ['request' | 'req', BlockMode, string?] => {
     DOTS: 0,
     COMMAS: 0
   };
+  const caseSum = (): number =>
+    Object.values(cases).reduce((acc, n) => acc + n, 0);
+  let pointer = 0;
 
   let rebuild = '';
   for (const char of line) {
@@ -19,6 +23,8 @@ export default (line: string): ['request' | 'req', BlockMode, string?] => {
         cases.SCOPE++;
 
         rebuild += char;
+
+        pointer++;
         break;
       }
       case "'":
@@ -26,12 +32,16 @@ export default (line: string): ['request' | 'req', BlockMode, string?] => {
         cases.QUOTE++;
 
         rebuild += char;
+
+        pointer++;
         break;
       }
       case '{': {
         cases.CURVE_SCOPE++;
 
         rebuild += char;
+
+        pointer++;
         break;
       }
       case ')': {
@@ -41,6 +51,8 @@ export default (line: string): ['request' | 'req', BlockMode, string?] => {
         } else {
           // rebuild = '';
         }
+
+        pointer++;
         break;
       }
       case '}': {
@@ -52,16 +64,22 @@ export default (line: string): ['request' | 'req', BlockMode, string?] => {
             rebuild = '';
           }
         }
+
+        pointer++;
         break;
       }
       case ':':
       case '=': {
-        cases.ENDLINES++;
-
-        if (rebuild.length > 0) {
+        if (caseSum() === 0) {
+          rebuild = '';
+          line = line.substr(pointer + 1);
+        } else if (rebuild.length > 0) {
           matches.push(rebuild);
           rebuild = '';
         }
+        cases.ENDLINES++;
+
+        pointer++;
         break;
       }
       case '.': {
@@ -71,6 +89,8 @@ export default (line: string): ['request' | 'req', BlockMode, string?] => {
           matches.push(rebuild);
           rebuild = '';
         }
+
+        pointer++;
         break;
       }
       case ',': {
@@ -80,9 +100,14 @@ export default (line: string): ['request' | 'req', BlockMode, string?] => {
           matches.push(rebuild);
           rebuild = '';
         }
+
+        pointer++;
         break;
       }
       case ' ': {
+        cases.SPACES++;
+
+        pointer++;
         break;
       }
       case ';': {
@@ -94,11 +119,14 @@ export default (line: string): ['request' | 'req', BlockMode, string?] => {
             rebuild = '';
           }
         }
+
+        pointer++;
         break;
       }
       default: {
         rebuild += char;
 
+        pointer++;
         break;
       }
     }
