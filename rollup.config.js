@@ -1,8 +1,8 @@
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
-import { dependencies } from './package.json';
+import pkg from './package.json' assert { type: 'json' };
 
-const external = Object.keys(dependencies);
+const external = Object.keys(pkg.dependencies);
 
 export default {
   input: `./src/analyze.ts`,
