@@ -20,20 +20,21 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 18
+          cache: 'npm'
 
       - name: Install
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Lint code
-        run: yarn lint
+        run: npm run lint
   test:
     needs: lint
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [18]
         os: [ubuntu-22.04, macos-12]
 
     steps:
@@ -43,21 +44,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          cache: 'npm'
 
       - name: Install
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Build code
-        run: yarn build
+        run: npm run build
 
       - name: Test code
-        run: yarn test
+        run: npm run test
   release:
     needs: test
     runs-on: ubuntu-22.04
@@ -68,24 +64,17 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          node-version: 18
+          cache: 'npm'
 
       - name: Install
-        run: yarn --frozen-lockfile
-      - name: semantic-release Prepare
-        run: yarn add semantic-release
+        run: npm ci
 
       - name: Build code
-        run: yarn build
+        run: npm run build
 
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn semantic-release
+        run: npx semantic-release
