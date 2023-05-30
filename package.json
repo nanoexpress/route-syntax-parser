@@ -14,7 +14,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "^17.6.3",
+    "@commitlint/cli": "^17.6.5",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "commitlint-config-airlight": "^6.0.0",
     "coveralls": "^3.1.1",
