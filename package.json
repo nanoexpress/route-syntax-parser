@@ -12,7 +12,7 @@
     "format": "biome check --write . && rumdl fmt .",
     "prepare": "lefthook install",
     "build": "bun build ./src/analyze.ts --outdir esm --target node --sourcemap=linked && tsc --emitDeclarationOnly",
-    "test": "bun run build && node --test tests/"
+    "test": "bun run build && node --test tests"
   },
   "dependencies": {},
   "devDependencies": {
