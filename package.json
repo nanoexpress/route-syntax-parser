@@ -18,7 +18,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.5.15",
     "@commitlint/cli": "^21.2.3",
-    "commitlint-config-airlight": "^6.0.5",
+    "@commitlint/config-conventional": "^21.2.3",
     "lefthook": "^2.1.15",
     "rumdl": "^0.2.78",
     "typescript": "^7.0.2"
