@@ -4,32 +4,23 @@
   "version": "1.0.0",
   "type": "module",
   "packageManager": "bun@1.4.2",
-  "typings": "typings/analyze.d.ts",
+  "typings": "typings/src/analyze.d.ts",
   "main": "esm/analyze.js",
   "license": "GPL-3.0",
   "scripts": {
-    "lint": "smartlint",
-    "prepare": "husky install",
-    "build": "rollup -c",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "lint": "biome check . && rumdl check .",
+    "format": "biome check --write . && rumdl fmt .",
+    "prepare": "lefthook install",
+    "build": "bun build ./src/analyze.ts --outdir esm --target node --sourcemap=linked && tsc --emitDeclarationOnly",
+    "test": "bun run build && node --test tests/"
   },
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "^17.8.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "commitlint-config-airlight": "^6.0.0",
-    "coveralls": "^3.1.1",
-    "eslint": "^8.56.0",
-    "eslint-config-airlight-node": "^4.0.2",
-    "husky": "^8.0.3",
-    "jest": "^29.7.0",
-    "lint-staged": "^13.3.0",
-    "lint-staged-config-airlight": "^4.0.2",
-    "prettier": "^2.8.8",
-    "prettier-config-airlight": "^2.0.1",
-    "rollup": "^3.29.4",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "smartlint": "^6.0.4",
-    "typescript": "^5.0.2"
+    "@biomejs/biome": "^2.5.15",
+    "@commitlint/cli": "^21.2.3",
+    "commitlint-config-airlight": "^6.0.5",
+    "lefthook": "^2.1.15",
+    "rumdl": "^0.2.78",
+    "typescript": "^7.0.2"
   }
 }

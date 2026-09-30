@@ -1,5 +1,5 @@
+import type { BlockMode, IBlock } from '../../../types/interfaces';
 import scopeExtractor from '../../extractors/scopes';
-import { IBlock } from '../../../types/interfaces';
 import isScopeIn from '../../utils/is-scope-in';
 import requestModeBodyFinder from './body';
 import requestModeCookiesFinder from './cookies';
@@ -17,24 +17,24 @@ export default function caseRequestModeFinder(
     /(request|req).(.*)?(;|\.|\()/
   );
 
-  let res;
-  let input;
-  let _;
-  let _key;
-  let _skey;
+  let res: IBlock | null | undefined;
+  let input: string;
+  let _: string | undefined;
+  let _key: string | undefined;
+  let _skey: string | undefined;
 
   if (requestPropertyCaseFindMatch) {
     [input] = requestPropertyCaseFindMatch;
     [_, _key, _skey] = scopeExtractor(input);
 
     if (_skey) {
-      if (isScopeIn(_key)) {
+      if (isScopeIn(_key as BlockMode)) {
         return {
           link: _skey,
           linked: false,
           line_index: index,
           key: _skey,
-          mode: _key
+          mode: _key as BlockMode
         } as IBlock;
       }
       return undefined;

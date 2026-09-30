@@ -1,4 +1,4 @@
-import { IBlock } from '../../../types/interfaces';
+import type { IBlock } from '../../../types/interfaces';
 import variableKeyExtractor from '../../extractors/variable-key';
 
 export default function requestModeCookiesFinder(
@@ -6,9 +6,9 @@ export default function requestModeCookiesFinder(
   _key: string,
   line: string,
   index: number
-): IBlock | void {
-  let key;
-  let link;
+): IBlock | undefined {
+  let key: string;
+  let link: string;
   const extracted = variableKeyExtractor(line);
 
   if (!extracted) {
