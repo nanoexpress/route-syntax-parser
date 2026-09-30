@@ -39,7 +39,13 @@ jobs:
     strategy:
       matrix:
         
+<<<<<<< HEAD
         os: [ubuntu-latest, macos-latest]
+||||||| parent of d38cbdf (ci: pin node 26 for tests; fix node --test paths)
+        os: [ubuntu-22.04, macos-12]
+=======
+        os: [ubuntu-24.04, macos-14]
+>>>>>>> d38cbdf (ci: pin node 26 for tests; fix node --test paths)
 
     steps:
       - uses: actions/checkout@v3
@@ -48,6 +54,11 @@ jobs:
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.4.2
+
+      - name: Use Node.js 26 (node:test runtime)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26
 
       - name: Cache
         uses: actions/cache@v3
