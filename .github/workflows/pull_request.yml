@@ -23,7 +23,7 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
       - name: Use Bun.sh
         uses: oven-sh/setup-bun@v2
@@ -31,15 +31,15 @@ jobs:
           bun-version: 1.4.2
 
       - name: Use Node.js 26 (node:test runtime)
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 26
 
       - name: Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/bun.lock') }}
+          path: '~/.bun/install/cache'
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
 
       - name: Install
         run: bun install --frozen-lockfile
@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       - uses: ahmadnassri/action-dependabot-auto-merge@v2
         with:
           target: minor
