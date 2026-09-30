@@ -1,4 +1,4 @@
-import { BlockMode } from '../../types/interfaces';
+import type { BlockMode } from '../../types/interfaces';
 
 export default (line: string): ['request' | 'req', BlockMode, string?] => {
   const matches = [];
@@ -13,7 +13,7 @@ export default (line: string): ['request' | 'req', BlockMode, string?] => {
     COMMAS: 0
   };
   const caseSum = (): number =>
-    Object.values(cases).reduce((acc, n) => acc + n, 0);
+    Object.values(cases).reduce((acc: number, n: number) => acc + n, 0);
   let pointer = 0;
 
   let rebuild = '';

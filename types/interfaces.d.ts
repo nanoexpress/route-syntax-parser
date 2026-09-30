@@ -1,4 +1,10 @@
-export type BlockMode ='headers' | 'cookies' | 'params' | 'query' | 'body' | 'property'
+export type BlockMode =
+  | 'headers'
+  | 'cookies'
+  | 'params'
+  | 'query'
+  | 'body'
+  | 'property';
 
 export interface IBlock {
   link: string;

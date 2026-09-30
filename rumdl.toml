@@ -1,0 +1,5 @@
+# Markdown lint/format (replaces markdownlint)
+# https://rumdl.dev/configuration
+
+# Mirrors the old .markdownlint.json; MD059 flags badge-in-link markup
+disable = ["MD013", "MD033", "MD041", "MD059"]
