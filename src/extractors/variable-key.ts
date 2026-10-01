@@ -1,6 +1,6 @@
 export default function variableKeyExtractor(line: string): string[] | null {
-  const matcRegEx = /(const|let|var)(.*)=(.*)?;/;
-  const matches = line.match(matcRegEx);
+  const matchRegEx = /(const|let|var)(.*)=(.*)?;/;
+  const matches = line.match(matchRegEx);
 
   if (matches) {
     return matches.map((m) => m.trim()).slice(1);
