@@ -1,7 +1,7 @@
 {
   "name": "@nanoexpress/route-syntax-parser",
   "description": "Syntax parser for each router to power performance of nanoexpress",
-  "version": "1.0.0",
+  "version": "2.4.4",
   "type": "module",
   "packageManager": "bun@1.4.2",
   "typings": "typings/src/analyze.d.ts",
@@ -25,5 +25,8 @@
     "release-me-sh": "^0.11.12",
     "rumdl": "^0.2.78",
     "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
