@@ -21,7 +21,7 @@
     "@commitlint/config-conventional": "^21.2.3",
     "@ls-lint/ls-lint": "^2.3.1",
     "lefthook": "^2.1.17",
-    "oxlint": "^1.86.0",
+    "oxlint": "^1.87.0",
     "release-me-sh": "^0.12.3",
     "rumdl": "^0.2.78",
     "typescript": "^7.0.2"
