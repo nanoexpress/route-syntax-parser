@@ -23,7 +23,7 @@
     "lefthook": "^2.2.2",
     "oxlint": "^1.90.0",
     "release-me-sh": "^0.12.3",
-    "rumdl": "^0.3.0",
+    "rumdl": "^0.3.2",
     "typescript": "^7.0.2"
   },
   "engines": {
