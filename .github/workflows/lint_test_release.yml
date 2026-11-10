@@ -19,7 +19,7 @@ jobs:
       - name: Use Bun.sh
         uses: oven-sh/setup-bun@v2.2.0
         with:
-          bun-version: 1.4.2
+          bun-version: 1.4.4
 
       - name: Cache
         uses: actions/cache@v6.1.0
@@ -47,7 +47,7 @@ jobs:
       - name: Use Bun.sh
         uses: oven-sh/setup-bun@v2.2.0
         with:
-          bun-version: 1.4.2
+          bun-version: 1.4.4
 
       - name: Use Node.js 26 (node:test runtime)
         uses: actions/setup-node@v7.1.0
@@ -78,7 +78,7 @@ jobs:
       - name: Use Bun.sh
         uses: oven-sh/setup-bun@v2.2.0
         with:
-          bun-version: 1.4.2
+          bun-version: 1.4.4
 
       - name: Cache
         uses: actions/cache@v6.1.0
