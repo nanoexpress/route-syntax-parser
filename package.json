@@ -8,7 +8,7 @@
   "main": "esm/analyze.js",
   "license": "GPL-3.0",
   "scripts": {
-    "lint": "ls-lint && biome check . && oxlint . && rumdl check .",
+    "lint": "ls-lint && biome check . && rumdl check .",
     "format": "biome check --write . && rumdl fmt .",
     "prepare": "lefthook install",
     "build": "bun build ./src/analyze.ts --outdir esm --target node --sourcemap=linked && tsc --emitDeclarationOnly",
@@ -16,12 +16,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@biomejs/biome": "^2.5.15",
+    "@biomejs/biome": "^2.6.6",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@ls-lint/ls-lint": "^2.3.2",
     "lefthook": "^2.2.2",
-    "oxlint": "^1.92.0",
     "release-me-sh": "^0.12.3",
     "rumdl": "^0.3.2",
     "typescript": "^7.0.2"
